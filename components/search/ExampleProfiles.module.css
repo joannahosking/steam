@@ -1,0 +1,74 @@
+.container {
+  h2,
+  p {
+    text-align: center;
+  }
+
+  > p {
+    margin-top: 0.25rem;
+  }
+}
+
+.userList {
+  list-style-type: none;
+  margin: 1.5rem 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.userLink {
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    padding: 0.5rem;
+    background-color: var(--surface);
+    border-radius: 3rem;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition);
+
+    &:hover {
+      box-shadow: var(--shadow);
+
+      img {
+        border-color: var(--primary);
+      }
+    }
+  }
+
+  img {
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border-color var(--transition);
+  }
+
+  div {
+    margin-right: 0.25rem;
+  }
+
+  h3 {
+    color: var(--text);
+    font-size: 1rem;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: left;
+  }
+}
+
+.tooltip {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+  margin-inline: auto;
+  color: var(--text-subtle);
+  font-size: 0.875rem;
+}
