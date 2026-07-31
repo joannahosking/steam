@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem var(--padding);
+
+  @media (max-width: 750px) {
+    padding-block: 1rem;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem 0.25rem 0.25rem;
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  box-shadow: var(--shadow);
+  font-weight: 500;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+@media (max-width: 750px) {
+    .logo {
+      svg {
+        width: 25px;
+      }
+    }
+}

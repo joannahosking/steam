@@ -1,3 +1,20 @@
+.hero {
+  max-width: 50rem;
+  margin-top: 3vh;
+  margin-top: 3dvh;
+  margin-inline: auto;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  > p {
+    margin-top: 0.25rem;
+    text-wrap: balance;
+  }
+}
+
 .features {
   ul {
     list-style-type: none;
@@ -68,12 +85,6 @@
 }
 
 .faq {
-  padding: 2rem;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-
   h2 {
     width: fit-content;
     margin-inline: auto;
@@ -92,6 +103,12 @@
   @media (min-width: 950px) {
     ul {
       grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    ul {
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 

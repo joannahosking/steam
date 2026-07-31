@@ -1,0 +1,28 @@
+.form {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-lg);
+    text-align: left;
+
+    button {
+        width: 100%;
+    }
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-block: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.error {
+    margin-top: 1rem;
+    color: red;
+    font-size: 0.875rem;
+}

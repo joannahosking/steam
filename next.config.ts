@@ -2,7 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "media.steampowered.com" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "media.steampowered.com" },
+      { protocol: "https", hostname: "avatars.steamstatic.com" },
+    ],
   },
 };
 

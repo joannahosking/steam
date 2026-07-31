@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ShieldCheck } from "lucide-react";
+import styles from "./SteamIdForm.module.css";
+import { ShieldCheck, MoveRight } from "lucide-react";
 
 export function SteamIdForm() {
   const [input, setInput] = useState("");
@@ -42,7 +43,7 @@ export function SteamIdForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <label htmlFor="steamInput">Steam profile</label>
       <input
         id="steamInput"
@@ -50,14 +51,24 @@ export function SteamIdForm() {
         onChange={(e) => setInput(e.target.value)}
         placeholder="Profile URL, Steam name, or SteamID64"
       />
-      <p>
-        <ShieldCheck size={20} color={"black"} /> Your profile must be public.
-        Nothing is stored.
+      <p className={styles.info}>
+        <ShieldCheck size={20} color={"currentColor"} /> Your profile must be
+        public. Nothing is stored.
       </p>
       <button type="submit" disabled={isResolving}>
-        {isResolving ? "Finding your library…" : "Analyse library"}
+        {isResolving ? (
+          "Finding your library…"
+        ) : (
+          <>
+            Analyse library <MoveRight size={20} color="currentColor" />
+          </>
+        )}
       </button>
-      {error && <p role="alert">{error}</p>}
+      {error && (
+        <p role="alert" className={styles.error}>
+          {error}
+        </p>
+      )}
     </form>
   );
 }

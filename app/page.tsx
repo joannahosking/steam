@@ -25,17 +25,19 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main>
-      <h1>Analyse your Steam Library</h1>
-      <p>
-        <strong>Discover how you really play.</strong>
-      </p>
+      <section className={styles.hero}>
+        <h1>Analyse your Steam Library</h1>
+        <p>
+          <strong>Discover how you really play.</strong>
+        </p>
 
-      <p>
-        See your favourite genres, uncover your backlog, and get recommendations
-        from the games you already own.
-      </p>
+        <p>
+          See your favourite genres, uncover your backlog, and get
+          recommendations from the games you already own.
+        </p>
 
-      <SteamIdForm />
+        <SteamIdForm />
+      </section>
 
       <ExampleProfiles />
 
@@ -89,11 +91,11 @@ export default function HomePage() {
           <li>
             <CircleQuestionMark size={24} color={"var(--text-muted)"} />
             <div>
-              <h3>What is Steam Lens?</h3>
+              <h3>What is this project?</h3>
               <p>
-                Steam Lens analyses public Steam libraries to help you
-                understand gaming habits. It recommends games you already own,
-                helping you rediscover your library.
+                This tool analyses public Steam libraries to help you understand
+                gaming habits. It recommends games you already own, helping you
+                rediscover your library.
               </p>
             </div>
           </li>
@@ -102,19 +104,9 @@ export default function HomePage() {
             <div>
               <h3>Does my Steam profile need to be public?</h3>
               <p>
-                Yes. Steam Lens relies on Steam's publicly available library
+                Yes. The tool relies on Steam's publicly available library
                 information to analyze your profile, so it only works with
                 public profiles.
-              </p>
-            </div>
-          </li>
-          <li>
-            <CircleQuestionMark size={24} color={"var(--text-muted)"} />
-            <div>
-              <h3>Does Steam Lens store my data?</h3>
-              <p>
-                No. Your profile is analysed to generate your dashboard and
-                isn't stored afterwards.
               </p>
             </div>
           </li>
@@ -125,6 +117,36 @@ export default function HomePage() {
               <p>
                 Recommendations are generated based on the games you've already
                 played and your library's characteristics.
+              </p>
+            </div>
+          </li>
+          <li>
+            <CircleQuestionMark size={24} color={"var(--text-muted)"} />
+            <div>
+              <h3>Why is my library missing games?</h3>
+              <p>
+                The tool can only analyse your public Steam profile. Hidden or
+                private games won't appear in your dashboard.
+              </p>
+            </div>
+          </li>
+          <li>
+            <CircleQuestionMark size={24} color={"var(--text-muted)"} />
+            <div>
+              <h3>Do you store my data?</h3>
+              <p>
+                No. Your profile is analysed to generate your dashboard and
+                isn't stored afterwards.
+              </p>
+            </div>
+          </li>
+          <li>
+            <CircleQuestionMark size={24} color={"var(--text-muted)"} />
+            <div>
+              <h3>Are you affiliated with Steam or Valve?</h3>
+              <p>
+                No. The tool is an independent project that uses publicly
+                available Steam data.
               </p>
             </div>
           </li>

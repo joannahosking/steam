@@ -3,7 +3,7 @@ import { Providers } from "@/lib/queryClient";
 import type { Metadata } from "next";
 import { body } from "./fonts";
 import "./globals.css";
-
+import { Header } from "@/components/shared/Header";
 import { Coffee } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -20,7 +20,10 @@ export default function RootLayout({
     <html lang="en" className={`${body.variable}`}>
       <body>
         <div id="container">
-          <Providers>{children}</Providers>
+          <Providers>
+            <Header />
+            {children}
+          </Providers>
           <footer>
             <p>&copy; {new Date().getFullYear()}</p>
             <p>

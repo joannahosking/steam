@@ -30,3 +30,26 @@ export interface Game {
   lastPlayed: Date | null;
   genres: string[] | null;
 }
+
+const RawPlayerSummarySchema = z.object({
+  steamid: z.string(),
+  personaname: z.string(),
+  avatarfull: z.string(),
+});
+
+export const SteamPlayerSummaryResponseSchema = z.object({
+  response: z.object({
+    players: z.array(RawPlayerSummarySchema).optional(), // optional for private profiles
+  }),
+});
+
+export type RawPlayerSummary = z.infer<typeof RawPlayerSummarySchema>;
+export type SteamPlayerSummaryResponse = z.infer<
+  typeof SteamPlayerSummaryResponseSchema
+>;
+
+export interface Player {
+  steamId: string;
+  personaName: string;
+  avatarUrl: string;
+}
