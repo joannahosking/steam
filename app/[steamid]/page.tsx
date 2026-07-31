@@ -1,9 +1,16 @@
 "use client";
 
-import { use } from "react";
+import { use, useMemo } from "react";
 import { useOwnedGames } from "@/hooks/useOwnedGames";
 import { useGameGenres } from "@/hooks/useGameGenres";
+import { usePlayerSummary } from "@/hooks/usePlayerSummary";
 import { ApiError } from "@/lib/steam/fetchJson";
+import { ProfileHeader } from "@/components/dashboard/ProfileHeader";
+import { BacklogProgress } from "@/components/dashboard/BacklogProgress";
+import { PlaytimeHistogram } from "@/components/dashboard/PlaytimeHistogram";
+import { computePlaytimeHistogram } from "@/lib/steam/playtimeHistogram";
+import { computeDashboardStats } from "@/lib/steam/dashboardStats";
+import styles from "./page.module.css";
 
 interface PageProps {
   params: Promise<{ steamid: string }>;
@@ -14,10 +21,12 @@ export default function DashboardPage({ params }: PageProps) {
 
   const gamesQuery = useOwnedGames(steamid);
   const genresQuery = useGameGenres(steamid);
+  const summaryQuery = usePlayerSummary(steamid);
 
-  if (gamesQuery.isPending) {
-    return <div>Loading games…</div>;
-  }
+  const stats = useMemo(() => {
+    if (!gamesQuery.data) return null;
+    return computeDashboardStats(gamesQuery.data.games);
+  }, [gamesQuery.data]);
 
   if (gamesQuery.isError) {
     if (
@@ -25,37 +34,42 @@ export default function DashboardPage({ params }: PageProps) {
       gamesQuery.error.code === "private_profile"
     ) {
       return (
-        <div>
+        <div className={styles.error}>
           This Steam profile is private. Ask the owner to set "Game details" to
           Public.
         </div>
       );
     }
-    return <div>Something went wrong loading this library.</div>;
+    return (
+      <div className={styles.error}>
+        Something went wrong loading this library.
+      </div>
+    );
   }
-
-  const { games } = gamesQuery.data;
 
   return (
     <main>
-      <h1>{games.length} games</h1>
+      <ProfileHeader
+        player={summaryQuery.data}
+        isLoading={summaryQuery.isPending}
+        totalGames={stats?.totalGames ?? 0}
+        totalHours={stats?.totalHours ?? 0}
+        statsLoading={gamesQuery.isPending}
+      />
 
-      <section>
-        <h2>Stats</h2>
-        <p>
-          Total playtime: {games.reduce((sum, g) => sum + g.playtimeMinutes, 0)}{" "}
-          minutes
-        </p>
-      </section>
+      <BacklogProgress
+        playedCount={stats?.playedCount ?? 0}
+        unplayedCount={stats?.unplayedCount ?? 0}
+        backlogPercent={stats?.backlogPercent ?? 0}
+        isLoading={gamesQuery.isPending}
+      />
 
-      <section>
-        <h2>Genres</h2>
-        {genresQuery.isPending && <p>Loading genre breakdown…</p>}
-        {genresQuery.isError && <p>Couldn't load genre data.</p>}
-        {genresQuery.data && (
-          <pre>{JSON.stringify(genresQuery.data.genres, null, 2)}</pre>
-        )}
-      </section>
+      <PlaytimeHistogram
+        data={
+          gamesQuery.data ? computePlaytimeHistogram(gamesQuery.data.games) : []
+        }
+        isLoading={gamesQuery.isPending}
+      />
     </main>
   );
 }

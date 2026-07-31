@@ -184,7 +184,7 @@ strong {
 main {
   display: grid;
   gap: calc(var(--padding) + 1rem);
-  padding: 0 var(--padding) 0;
+  padding: var(--padding) var(--padding) 0;
 }
 
 /* background effects */

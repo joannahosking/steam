@@ -1,0 +1,70 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.percent {
+  font-size: 0.875rem;
+  color: var(--text-subtle);
+}
+
+.track {
+  height: 10px;
+  border-radius: var(--radius-xs);
+  background: var(--surface-alt);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: var(--radius-xs);
+  transition: width 0.5s ease;
+}
+
+.legend {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.dotPlayed,
+.dotUnplayed {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dotPlayed {
+  background: var(--primary);
+}
+
+.dotUnplayed {
+  background: var(--surface-alt);
+  border: 1px solid var(--border-hover);
+}

@@ -3,7 +3,6 @@ import { Providers } from "@/lib/queryClient";
 import type { Metadata } from "next";
 import { body } from "./fonts";
 import "./globals.css";
-import { Header } from "@/components/shared/Header";
 import { Coffee } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -21,7 +20,6 @@ export default function RootLayout({
       <body>
         <div id="container">
           <Providers>
-            <Header />
             {children}
           </Providers>
           <footer>
