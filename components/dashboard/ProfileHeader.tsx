@@ -51,12 +51,12 @@ export function ProfileHeader({
 
           <div className={styles.textBlock}>
             {isLoading || !player ? (
-              <SkeletonBlock width="180px" height="2rem" radius="xs" />
+              <SkeletonBlock width="120px" height="2rem" radius="xs" />
             ) : (
               <h1 className={styles.name}>{player.personaName}</h1>
             )}
             {statsLoading ? (
-              <SkeletonBlock width="120px" height="1.7rem" radius="xs" />
+              <SkeletonBlock width="100px" height="1.7rem" radius="xs" />
             ) : (
               <p className={styles.summary}>
                 {formatNumber(totalHours)} hours logged

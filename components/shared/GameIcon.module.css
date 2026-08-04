@@ -1,6 +1,7 @@
 .icon {
   border-radius: var(--radius-xs);
   display: block;
+  max-width: unset;
 }
 
 .fallback {
