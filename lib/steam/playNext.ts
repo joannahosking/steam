@@ -11,7 +11,6 @@ export function computePlayNextSuggestions(
   genreDistribution: GenreSlice[],
   limit = 5,
 ): PlayNextSuggestion[] {
-  //Rank genres by their distribution
   const genreRank = new Map(
     genreDistribution.map((slice, index) => [
       slice.genre,
@@ -33,8 +32,7 @@ export function computePlayNextSuggestions(
   });
 
   return scored
-    .filter((s) => s.score > 0) // don't be random
-    .sort((a, b) => b.score - a.score)
+    .sort((a, b) => b.score - a.score) // no score > 0 filter anymore - show best available even if weak
     .slice(0, limit)
     .map(({ game, matchedGenres }) => ({ game, matchedGenres }));
 }

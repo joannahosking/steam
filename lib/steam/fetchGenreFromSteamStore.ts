@@ -29,7 +29,7 @@ async function fetchWithRetry(
 export async function fetchGenreFromSteamStore(
   appId: number,
 ): Promise<string[] | null> {
-  const url = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
+  const url = `https://store.steampowered.com/api/appdetails?appids=${appId}&l=english`;
 
   const res = await fetchWithRetry(url);
   if (!res || !res.ok) {
