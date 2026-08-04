@@ -9,9 +9,16 @@ interface OwnedGamesResponse {
 export function useOwnedGames(steamid: string) {
   return useQuery({
     queryKey: ["games", steamid],
-    queryFn: () => fetchJson<OwnedGamesResponse>(`/api/steam/${steamid}`),
+    queryFn: async () => {
+      const data = await fetchJson<OwnedGamesResponse>(`/api/steam/${steamid}`);
+      return {
+        games: data.games.map((game) => ({
+          ...game,
+          lastPlayed: game.lastPlayed ? new Date(game.lastPlayed) : null,
+        })),
+      };
+    },
     retry: (failureCount, error) => {
-      // Don't retry a private profile
       if (error instanceof Error && error.message === "private_profile")
         return false;
       return failureCount < 2;

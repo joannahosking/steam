@@ -1,5 +1,5 @@
 import Image from "next/image";
-import concernedape from "@/components/search/assets/concernedape.jpg";
+import vatyun from "@/components/search/assets/vatyun.jpg";
 import st4ck from "@/components/search/assets/st4ck.jpg";
 import woogiemonster from "@/components/search/assets/woogiemonster.jpg";
 import { ChevronRight, CornerLeftUp } from "lucide-react";
@@ -12,31 +12,6 @@ export function ExampleProfiles() {
       <p>Try one of these.</p>
       <ul className={styles.userList}>
         <li className={styles.userLink}>
-          <a href="/76561197984010167">
-            <Image
-              src={concernedape}
-              alt="ConcernedApe"
-              width={50}
-              height={50}
-            />
-            <div>
-              <h3>ConcernedApe</h3>
-              <p>Creator of Stardew Valley</p>
-            </div>
-            <ChevronRight size={30} color={"var(--text-muted)"} />
-          </a>
-        </li>
-        <li className={styles.userLink}>
-          <a href="/76561198023414915">
-            <Image src={st4ck} alt="St4ck" width={50} height={50} />
-            <div>
-              <h3>St4ck</h3>
-              <p>Most XP leader</p>
-            </div>
-            <ChevronRight size={30} color={"var(--text-muted)"} />
-          </a>
-        </li>
-        <li className={styles.userLink}>
           <a href="/76561198006584703">
             <Image
               src={woogiemonster}
@@ -47,6 +22,31 @@ export function ExampleProfiles() {
             <div>
               <h3>WoogieMonster</h3>
               <p>Playtime leader</p>
+            </div>
+            <ChevronRight size={30} color={"var(--text-muted)"} />
+          </a>
+        </li>
+        <li className={styles.userLink}>
+          <a href="/76561198023414915">
+            <Image src={st4ck} alt="St4ck" width={50} height={50} />
+            <div>
+              <h3>St4ck</h3>
+              <p>XP leader</p>
+            </div>
+            <ChevronRight size={30} color={"var(--text-muted)"} />
+          </a>
+        </li>
+        <li className={styles.userLink}>
+          <a href="/76561198194795287">
+            <Image
+              src={vatyun}
+              alt="vatyun"
+              width={50}
+              height={50}
+            />
+            <div>
+              <h3>vatyun</h3>
+              <p>Friends leader</p>
             </div>
             <ChevronRight size={30} color={"var(--text-muted)"} />
           </a>

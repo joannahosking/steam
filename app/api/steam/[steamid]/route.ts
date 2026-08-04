@@ -13,7 +13,7 @@ export async function GET(
     if (error instanceof PrivateProfileError) {
       return Response.json({ error: "private_profile" }, { status: 403 });
     }
-    console.error(error);
+    console.error("getOwnedGames failed:", error); // <- look at this in your terminal
     return Response.json({ error: "unknown_error" }, { status: 500 });
   }
 }

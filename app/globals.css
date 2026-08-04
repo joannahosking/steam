@@ -13,7 +13,7 @@
 
   /* borders */
   --border: #ecebe7;
-  --border-hover: #d8d7d2;
+  --border-hover: #c2c1bc;
 
   /* brand */
   --primary: #4e7cf3;
@@ -247,7 +247,7 @@ main {
   inset: 0;
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.15),
     transparent 55%
   );
   animation: lightShift linear;
@@ -256,7 +256,7 @@ main {
 }
 
 /* forms */
-button {
+button[type="submit"] {
   appearance: none;
   border: none;
   display: inline-flex;
@@ -275,17 +275,17 @@ button {
   transition: all var(--transition);
 }
 
-button:hover {
+button[type="submit"]:hover {
   background: var(--primary-hover);
   box-shadow: var(--shadow);
 }
 
-button:active {
+button[type="submit"]:active {
   transform: translateY(0);
   box-shadow: var(--shadow-sm);
 }
 
-button:focus-visible {
+button[type="submit"]:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 4px var(--primary-soft),

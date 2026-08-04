@@ -17,14 +17,32 @@ function rankGenres(genres: string[]): string[] {
   });
 }
 
-export async function fetchGenres(
+async function fetchWithRetry(
+  url: string,
+  retries = 2,
+): Promise<Response | null> {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const res = await fetch(url);
+    if (res.ok) return res;
+
+    // Only retry server-side/transient errors, not permanent client errors (401, 404)
+    if (res.status < 500 && res.status !== 522) return res;
+
+    if (attempt < retries) {
+      await new Promise((resolve) => setTimeout(resolve, 500 * (attempt + 1))); // 500ms, then 1000ms
+    }
+  }
+  return null;
+}
+
+export async function fetchGenresFromRawg(
   gameName: string,
 ): Promise<string[] | null> {
   const url = `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&search=${encodeURIComponent(gameName)}&page_size=1`;
 
-  const res = await fetch(url);
-  if (!res.ok) {
-    console.error(`RAWG lookup failed for "${gameName}": ${res.status}`);
+  const res = await fetchWithRetry(url);
+  if (!res || !res.ok) {
+    console.error(`RAWG lookup failed for "${gameName}": ${res?.status}`);
     return null;
   }
 

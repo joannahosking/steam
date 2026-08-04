@@ -1,8 +1,9 @@
 import { getOwnedGames } from "@/lib/steam/getOwnedGames";
-import { fetchGenres } from "@/lib/steam/fetchGenres";
+import { resolveGenres } from "@/lib/steam/resolveGenres";
 import { mapWithConcurrency } from "@/lib/concurrency";
-import { getCachedGenres, setCachedGenres } from "@/lib/steam/genresCache";
 import type { Game } from "@/lib/steam/types";
+
+const MAX_GAMES_TO_ENRICH = 30;
 
 export async function GET(
   req: Request,
@@ -10,16 +11,20 @@ export async function GET(
 ) {
   const { steamid } = await params;
   const games = await getOwnedGames(steamid);
-  const playedGames = games.filter((g) => g.playtimeMinutes > 0);
 
-  const genres = await mapWithConcurrency(playedGames, 4, async (game: Game) => {
-    const cached = getCachedGenres(game.name);
-    if (cached !== undefined) return { appId: game.appId, genre: cached };
+  const gamesToEnrich = games
+    .filter((g) => g.playtimeMinutes > 0)
+    .sort((a, b) => b.playtimeMinutes - a.playtimeMinutes)
+    .slice(0, MAX_GAMES_TO_ENRICH);
 
-    const genres = await fetchGenres(game.name);
-    setCachedGenres(game.name, genres);
-    return { appId: game.appId, genres };
-  });
+  const genres = await mapWithConcurrency(
+    gamesToEnrich,
+    4,
+    async (game: Game) => ({
+      appId: game.appId,
+      genres: await resolveGenres(game),
+    }),
+  );
 
   return Response.json({ genres });
 }

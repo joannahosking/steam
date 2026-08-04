@@ -113,4 +113,19 @@ describe("getOwnedGames", () => {
 
     await expect(getOwnedGames("76561197960287930")).rejects.toThrow();
   });
+
+  it("defaults rtime_last_played to 0 when the field is missing entirely", async () => {
+    mockFetchOnce({
+      response: {
+        game_count: 1,
+        games: [
+          { appid: 999, name: "Old Game", playtime_forever: 5 }, // no rtime_last_played at all
+        ],
+      },
+    });
+
+    const games = await getOwnedGames("76561197960287930");
+
+    expect(games[0].lastPlayed).toBeNull();
+  });
 });

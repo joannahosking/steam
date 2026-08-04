@@ -1,4 +1,5 @@
 import { SkeletonBlock } from "@/components/shared/SkeletonBlock";
+import {formatNumber} from "@/lib/formatNumber";
 import styles from "./BacklogProgress.module.css";
 
 interface BacklogProgressProps {
@@ -26,7 +27,7 @@ export function BacklogProgress({
           </>
         ) : (
           <>
-            <h2 className={styles.title}>Backlog</h2>
+            <h2 className={styles.eyebrow}>Backlog</h2>
             <span className={styles.percent}>{backlogPercent}% unplayed</span>
           </>
         )}
@@ -56,10 +57,10 @@ export function BacklogProgress({
         ) : (
           <>
             <span className={styles.legendItem}>
-              <span className={styles.dotPlayed} /> {playedCount} played
+              <span className={styles.dotPlayed} /> {formatNumber(playedCount)} played
             </span>
             <span className={styles.legendItem}>
-              <span className={styles.dotUnplayed} /> {unplayedCount} untouched
+              <span className={styles.dotUnplayed} /> {formatNumber(unplayedCount)} untouched
             </span>
           </>
         )}

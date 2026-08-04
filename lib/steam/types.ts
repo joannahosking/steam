@@ -5,7 +5,7 @@ const RawSteamGameSchema = z.object({
   name: z.string(),
   playtime_forever: z.number(),
   img_icon_url: z.string().optional(),
-  rtime_last_played: z.number(),
+  rtime_last_played: z.number().optional().default(0),
   playtime_2weeks: z.number().optional(),
   has_community_visible_stats: z.boolean().optional(),
 });
