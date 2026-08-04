@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { SteamIdForm } from "@/components/search/SteamIdForm";
 import { ExampleProfiles } from "@/components/search/ExampleProfiles";
+import Image from "next/image";
+import screenshot from "@/app/assets/screenshot.jpg";
 import { ChartPie, Star, ChartLine, CircleQuestionMark } from "lucide-react";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Steam Library Dashboard — See Your Backlog, Genres & Playtime",
+  title: "Steam Dashboard: See Your Backlog, Genres & Playtime",
   description:
     "Enter your Steam profile to see a visual breakdown of your game library: genres you actually play, backlog completion, and personalized suggestions for what to play next.",
   openGraph: {
@@ -43,7 +45,13 @@ export default function HomePage() {
 
       <section className={styles.features}>
         <figure className={styles.screenshot}>
-          <p>SCREENSHOT HERE</p>
+          <Image
+            src={screenshot}
+            alt="Screenshot of the dashboard"
+            width={800}
+            height={450}
+            sizes="(min-width: 850px) 800px, calc(100vw - 4rem)"
+          />
         </figure>
         <ul>
           <li>
