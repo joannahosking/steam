@@ -2,7 +2,7 @@
 
 A dashboard that visualizes your Steam library: genre breakdown, backlog completion, playtime distribution, and personalized "play next" suggestions pulled from your own unplayed games.
 
-**Live demo:** [add your Netlify URL here]
+**Live demo:** [steam.joannahosking.com](https://steam.joannahosking.com/)
 
 ## Why this exists
 
